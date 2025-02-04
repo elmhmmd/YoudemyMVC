@@ -1,0 +1,10 @@
+{
+    "name": "taha/education-platform",
+    "description": "education platform",
+    "autoload": {
+            "psr-4": {
+                "App\\": "app/"
+            }
+    },
+    "require": {}
+}
