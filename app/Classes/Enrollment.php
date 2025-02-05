@@ -1,11 +1,19 @@
 <?php
 namespace App\Classes;
  class Enrollment {
-        public function __construct(
-            private int $studentId,
-            private int $courseId,
-            private string $enrollmentDate
-        ) {}
+    private int $studentId;
+    private int $courseId;
+    private string $enrollmentDate;
+
+    public function __construct(
+        int $studentId,
+        int $courseId,
+        string $enrollmentDate
+    ) {
+        $this->studentId = $studentId;
+        $this->courseId = $courseId;
+        $this->enrollmentDate = $enrollmentDate;
+    }
 
         public function getStudentId(): int
         {

@@ -6,14 +6,28 @@ use Exception;
 
 class User
 {
+    private int $id;
+    private string $username;
+    private string $email;
+    private string $password;
+    private int $role_id;
+    private bool $isActive;
+
     public function __construct(
-        private int $id,
-        private string $username,
-        private string $email,
-        private string $password,
-        private int $role_id,
-        private bool $isActive
-    ) {}
+        int $id,
+        string $username,
+        string $email,
+        string $password,
+        int $role_id,
+        bool $isActive
+    ) {
+        $this->id = $id;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
+        $this->role_id = $role_id;
+        $this->isActive = $isActive;
+    }
 
     public function getId(): int
     {

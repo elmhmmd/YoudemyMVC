@@ -5,27 +5,56 @@ use App\Classes\Tag;
 class Course
 {
 
+    private int $id;
+    private string $title;
+    private string $description;
+    private string $thumbnail;
+    private string $video;
+    private string $document;
+    private int $category_id;
+    private string $category_name;
+    private int $user_id;
+    private array $tags;
+    private string $created_at;
+    private string $user_name;
+    private string $user_email;
+
     public function __construct(
-        private int $id,
-        private string $title,
-        private string $description,
-        private string $thumbnail,
-        private string $video,
-        private string $document,
-        private int $category_id,
-        private string $category_name,
-        private int $user_id,
-        private array $tags,
-        private string $created_at,
-        private string $user_name,
-        private string $user_email
+        int $id,
+        string $title,
+        string $description,
+        string $thumbnail,
+        string $video,
+        string $document,
+        int $category_id,
+        string $category_name,
+        int $user_id,
+        array $tags,
+        string $created_at,
+        string $user_name,
+        string $user_email
     ) {
-        forEach($tags as $tag) {
-            if(!$tag instanceof Tag){
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->thumbnail = $thumbnail;
+        $this->video = $video;
+        $this->document = $document;
+        $this->category_id = $category_id;
+        $this->category_name = $category_name;
+        $this->user_id = $user_id;
+        $this->tags = $tags;
+        $this->created_at = $created_at;
+        $this->user_name = $user_name;
+        $this->user_email = $user_email;
+
+        foreach ($tags as $tag) {
+            if (!$tag instanceof Tag) {
                 throw new \InvalidArgumentException("All tags should be instance of Tag class.");
             }
         }
     }
+
 
     public function toArray() {
         return [

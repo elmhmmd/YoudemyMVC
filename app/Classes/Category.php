@@ -4,10 +4,15 @@ namespace App\Classes;
 
 class Category
 {
+    private int $id;
+    private string $name;
     public function __construct(
-        private int $id,
-        private string $name
-    ) {}
+         int $id,
+         string $name
+    ) {
+        $this->id = $id ;
+        $this->name = $name ;
+    }
 
     public function getId(): int
     {
