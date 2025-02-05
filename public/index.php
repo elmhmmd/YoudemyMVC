@@ -1,9 +1,6 @@
 <?php
 
-use \App\Core;
-
-
-require __DIR__ . '/../vendor/autoload.php';
+require_once '../app/Core.php';
 
 $init = new Core();
 
