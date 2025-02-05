@@ -2,9 +2,9 @@
 // db params 
 
 define ("DB_HOST","localhost");
-define ("DB_PORT","3308");
-define ("DB_USER","root");
-define ("DB_PASS","");
+define ("DB_PORT","5000");
+define ("DB_USER","postgres");
+define ("DB_PASS","123456789");
 define ("DB_NAME","uknow");
 
 

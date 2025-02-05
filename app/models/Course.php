@@ -345,7 +345,7 @@ class Course
                     c.*,
                     c.id AS course_id,
                     cat.name AS category_name,
-                    GROUP_CONCAT(t.name) AS tags,
+                    STRING_AGG(t.name, ', ') AS tags,
                     u.username AS user_name,
                     u.email AS user_email
                 FROM course c
@@ -353,10 +353,10 @@ class Course
                 JOIN users u ON c.user_id = u.id
                 LEFT JOIN course_tag ct ON c.id = ct.course_id 
                 LEFT JOIN tag t ON ct.tag_id = t.id 
-                WHERE c.isPublished = 1 
+                WHERE c.isPublished = true
                 GROUP BY c.id, cat.name, u.username, u.email
                 ORDER BY c.created_at DESC 
-                LIMIT 6";
+                LIMIT 6;";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -394,65 +394,60 @@ class Course
 
         // Base query
         $sql = "SELECT 
-            c.*, 
-            c.id AS course_id,
-            cat.name AS category_name,
-            GROUP_CONCAT(t.name) AS tags,
-            u.username AS user_name,
-            u.email AS user_email
-            FROM course c
-            JOIN category cat ON c.category_id = cat.id 
-            JOIN users u ON c.user_id = u.id
-            LEFT JOIN course_tag ct ON c.id = ct.course_id 
-            LEFT JOIN tag t ON ct.tag_id = t.id 
-            WHERE c.isPublished = 1";
+        c.*, 
+        c.id AS course_id,
+        cat.name AS category_name,
+        STRING_AGG(t.name, ', ') AS tags,
+        u.username AS user_name,
+        u.email AS user_email
+    FROM course c
+    JOIN category cat ON c.category_id = cat.id 
+    JOIN users u ON c.user_id = u.id
+    LEFT JOIN course_tag ct ON c.id = ct.course_id 
+    LEFT JOIN tag t ON ct.tag_id = t.id 
+    WHERE c.isPublished = true";
 
         // Add search condition if search term is provided
         if (!empty($searchQuery)) {
-            $searchTerm = "%{$searchQuery}%";
             $sql .= " AND (
-                c.title LIKE :search 
-                OR c.description LIKE :search 
-                OR cat.name LIKE :search 
-                OR t.name LIKE :search
-            )";
+            c.title ILIKE :search 
+            OR c.description ILIKE :search 
+            OR cat.name ILIKE :search
+        )";
         }
 
-        // the complete query for getting the courses
+        // Finalize the query
         $sql .= " GROUP BY c.id, cat.name, u.username, u.email
-                  ORDER BY c.created_at DESC 
-                  LIMIT :offset, :limit";
-
+              ORDER BY c.created_at DESC 
+              LIMIT :limit OFFSET :offset";
 
         $stmt = $db->prepare($sql);
 
         if (!empty($searchQuery)) {
+            $searchTerm = "%{$searchQuery}%";
             $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
         }
 
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-        // start the couting 
-
+        // Counting total records
         $countSql = "SELECT COUNT(DISTINCT c.id) 
-                     FROM course c
-                     JOIN category cat ON c.category_id = cat.id 
-                     JOIN users u ON c.user_id = u.id
-                     LEFT JOIN course_tag ct ON c.id = ct.course_id 
-                     LEFT JOIN tag t ON ct.tag_id = t.id 
-                     WHERE c.isPublished = 1";
+                 FROM course c
+                 JOIN category cat ON c.category_id = cat.id 
+                 JOIN users u ON c.user_id = u.id
+                 LEFT JOIN course_tag ct ON c.id = ct.course_id 
+                 LEFT JOIN tag t ON ct.tag_id = t.id 
+                 WHERE c.isPublished = true";
 
         if (!empty($searchQuery)) {
             $countSql .= " AND (
-                c.title LIKE :search 
-                OR c.description LIKE :search 
-                OR cat.name LIKE :search 
-                OR t.name LIKE :search
-            )";
+            c.title ILIKE :search 
+            OR c.description ILIKE :search 
+            OR cat.name ILIKE :search
+        )";
         }
 
         $countStmt = $db->prepare($countSql);
@@ -473,6 +468,7 @@ class Course
         ];
     }
 
+
     static public function getCourseDetails($courseId, $userId = null)
     {
         $db = Database::getConnection();
@@ -483,7 +479,7 @@ class Course
             c.id AS course_id,
             cat.name AS category_name,
             u.username AS user_name,
-            GROUP_CONCAT(t.name) AS tags";
+            STRING_AGG(t.name, ', ') AS tags";
 
         if ($userId) {
             $enrollmentQuery = "
@@ -580,8 +576,8 @@ class Course
         ORDER BY enrolled_users DESC
         LIMIT 3
          ");
-         $stmt->execute();
-         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         return $result;
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

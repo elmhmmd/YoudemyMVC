@@ -113,7 +113,7 @@ class Teacher implements isActive
                 c.description,
                 c.created_at,
                 cat.name AS category_name,
-                GROUP_CONCAT(t.name) AS tags
+                STRING_AGG(t.name,', ') AS tags
             FROM course c
             JOIN category cat ON c.category_id = cat.id
             LEFT JOIN course_tag ct ON c.id = ct.course_id

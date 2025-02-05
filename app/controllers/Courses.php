@@ -17,16 +17,14 @@ class Courses extends Controller
             $this->view("courses");
         } else {
             header('Content-Type: application/json');
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            $page = isset($data['page']) ? (int)$data['page'] : 1;
+            $limit = isset($data['limit']) ? (int)$data['limit'] : 9;
+            $search = isset($data['search']) ? trim($data['search']) : null;
             try {
-                $data = json_decode(file_get_contents("php://input"), true);
-
-                $page = isset($data['page']) ? (int)$data['page'] : 1;
-                $limit = isset($data['limit']) ? (int)$data['limit'] : 9;
-                $search = isset($data['search']) ? trim($data['search']) : null;
-
-
+                //code...
                 $result = Course::getAllPublishedCourses($page, $limit, $search);
-
                 echo json_encode([
                     'status' => 'success',
                     'courses' => $result['courses'],
@@ -34,12 +32,11 @@ class Courses extends Controller
                     'currentPage' => $result['currentPage'],
                     'totalRecords' => $result['totalRecords']
                 ]);
-            } catch (Exception $e) {
-                // Return error response
+            } catch (\Throwable $th) {
                 http_response_code(500);
                 echo json_encode([
                     'status' => 'error',
-                    'message' => 'An error occurred: ' . $e->getMessage()
+                    'message' => 'An error occurred: ' . $th->getMessage()
                 ]);
             }
         }

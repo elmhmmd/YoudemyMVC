@@ -131,4 +131,4 @@
         input.parentElement.appendChild(errorMessage);
     }
 </script>
-</script>
+

@@ -11,7 +11,7 @@
                 $dbUser = DB_USER;
                 $dbPass = DB_PASS;
                 try {
-                    $dsn = "mysql:host={$host};port={$port};dbname={$dbname}";
+                    $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
                     $pdo = new \PDO($dsn, $dbUser, $dbPass);
                     $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                     self::$instance = $pdo;
