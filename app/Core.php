@@ -1,6 +1,6 @@
 <?php
 
-namespace 
+namespace App;
 
 class Core {
     protected $currentController = 'Pages';
