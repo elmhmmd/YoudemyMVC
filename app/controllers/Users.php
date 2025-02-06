@@ -1,6 +1,7 @@
 <?php
 
 use App\Lib\Controller;
+use App\Models\CSRF;
 
 class Users extends Controller
 {
@@ -73,6 +74,7 @@ class Users extends Controller
                     ];
                     $user = $this->modal("User");
                     if ($user->login($data)) {
+                        CSRF::generateToken();
                         echo json_encode(['success' => 'Login successful.']);
                         exit();
                     } else {
