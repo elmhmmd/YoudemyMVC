@@ -43,6 +43,7 @@ class Courses extends Controller
     }
     public function details($id)
     {
+        $this->valideRoleUser("student");
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $course = null;
             $userId = isset($_SESSION["user"]["id"]) ? $_SESSION["user"]["id"] : null;
@@ -64,6 +65,7 @@ class Courses extends Controller
     }
     public function enrolle($courseId)
     {
+        $this->valideRoleUser("student");
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userId =   $_SESSION["user"]["id"];
             $courseId = $_POST["courseId"] ?? null;
@@ -79,7 +81,7 @@ class Courses extends Controller
 
             $userActive = Student::isActive($userId);
             if (!$userActive) {
-                redirect("activeAccount");
+                redirect("users/activeAccount");
                 exit();
             }
 
@@ -104,6 +106,7 @@ class Courses extends Controller
     }
     public function teacher()
     {
+        $this->valideRoleUser("teacher");
         try {
             $userId = $_SESSION['user']['id'];
             $courses = Course::getCoursesByUserId($userId);
@@ -119,6 +122,7 @@ class Courses extends Controller
     }
     public function update($courseId)
     {
+        $this->valideRoleUser("teacher");
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $isEdit = true;
             $course = Course::getCourseById($courseId);
@@ -186,6 +190,7 @@ class Courses extends Controller
 
     public function create()
     {
+        $this->valideRoleUser("teacher");
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $isEdit = false;
             $pageTitle =  "Add New Course";

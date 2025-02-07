@@ -27,7 +27,7 @@ class Teacher implements isActive
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $teachers = [];
         foreach ($result as $teacher) {
-            $teachers[] = new UserClass($teacher['user_id'], $teacher['username'], $teacher['email'], "", $teacher['role_id'], $teacher['isActive']);
+            $teachers[] = new UserClass($teacher['user_id'], $teacher['username'], $teacher['email'], "", $teacher['role_id'], $teacher['isactive']);
         }
         return $teachers;
     }
@@ -98,7 +98,7 @@ class Teacher implements isActive
         $result = $stmt->fetchAll();
         $students = [];
         foreach ($result as $student) {
-            $students[] = new UserClass($student['user_id'], $student['username'], $student['email'], "", $student['role_id'], $student['isActive']);
+            $students[] = new UserClass($student['user_id'], $student['username'], $student['email'], "", $student['role_id'], $student['isactive']);
         }
         return $students;
     }

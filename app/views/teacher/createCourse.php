@@ -298,13 +298,12 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                console.log(res);
                 if (res.data.success) {
                     showToast(res.data.success);
                     setTimeout(() => {
                         window.location.href = '/UknowMvc/teacher/courses';
                     }, 2000);
-                } {
+                }else{
                     showToast(res.data.error, 'error');
                 }
             } catch (error) {

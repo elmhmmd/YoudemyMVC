@@ -9,6 +9,10 @@ class Users extends Controller
 
     public function register(): void
     {
+        if (isset($_SESSION['user'])) {
+            redirect("");
+            exit();
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Content-Type: application/json');
             // Get the JSON input
@@ -54,6 +58,10 @@ class Users extends Controller
     }
     public function login()
     {
+        if (isset($_SESSION['user'])) {
+            redirect("");
+            exit();
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Content-Type: application/json");
 
@@ -89,8 +97,15 @@ class Users extends Controller
             $this->view('/auth/login');
         }
     }
-    public function signout() {
+    public function signout()
+    {
         session_destroy();
         redirect("");
+    }
+    public function activeAccount(){
+        $this->view("activeAccount");
+    }
+    public function forbidden(){
+        $this->view("forbidden");
     }
 }

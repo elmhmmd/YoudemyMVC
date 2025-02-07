@@ -3,7 +3,7 @@
 function uploadThumb($files)
 {
 
-    $uploadDir = ROOT . "/public/imgs/uploads";
+    $uploadDir = APPROOT . "/../public/imgs/uploads/";
     
     try {
         if (isset($files['thumbnail']) && $files['thumbnail']['error'] == 0) {
@@ -23,7 +23,7 @@ function uploadThumb($files)
 
 
                 // Define the destination path
-                $destinationPath = $uploadDir . $newFileNameThumb;
+                $destinationPath = $uploadDir . "/" . $newFileNameThumb;
 
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     return $newFileNameThumb;

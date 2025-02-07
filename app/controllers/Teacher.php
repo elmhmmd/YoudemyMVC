@@ -1,12 +1,13 @@
 <?php
 
 use App\Lib\Controller;
-use App\Models\Course;
 use App\Models\Teacher as TeacherModal;
 
 class Teacher extends Controller
 {
-    public function __construct() {}
+    public function __construct() {
+        $this->valideRoleUser("teacher");
+    }
 
     public function dashboard()
     {

@@ -1,6 +1,9 @@
-<?php   
-    namespace App\Models ;
-    use App\Lib\Database;
+<?php
+
+namespace App\Models;
+
+use App\Lib\Database;
+
 class User
 {
     private $db;
@@ -57,10 +60,19 @@ class User
         }
         return false;
     }
-    public function setSession($data){
+    public function setSession($data)
+    {
         $_SESSION["user"]["id"] = $data["id"];
         $_SESSION["user"]["username"] = $data["username"];
         $_SESSION["user"]["email"] = $data["email"];
         $_SESSION["user"]["role_id"] = $data["role_id"];
+    }
+    public function getUserRole($id)
+    {
+        $stmt = $this->db->prepare("SELECT r.name as role_name , users.isActive as isActive  FROM users JOIN role r ON users.role_id = r.id WHERE users.id = :id");
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result;
     }
 }

@@ -3,7 +3,8 @@
 
 function uploadVideo($files)
 {
-    $uploadDir = ROOT . "/public/imgs/uploads";
+    $uploadDir = APPROOT . "/../public/imgs/uploads/";
+
     try {
         if (isset($files['video']) && $files['video']['error'] == 0) {
             $fileTmpPath = $files['video']['tmp_name'];
@@ -21,7 +22,7 @@ function uploadVideo($files)
                 $newVideoFileName = uniqid('video_', true) . '.' . $fileExtension;
 
                 // Define the destination path
-                $destinationPath = $uploadDir . $newVideoFileName;
+                $destinationPath = $uploadDir . "/" . $newVideoFileName;
 
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     return $newVideoFileName;

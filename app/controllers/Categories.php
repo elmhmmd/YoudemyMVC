@@ -17,6 +17,7 @@ class Categories extends Controller
     }
     public function create()
     {
+        $this->valideRoleUser("admin");
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
         
@@ -48,6 +49,7 @@ class Categories extends Controller
     }
     public function update()
     {
+        $this->valideRoleUser("admin");
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
         
@@ -80,6 +82,7 @@ class Categories extends Controller
     }
     public function delete()
     {
+        $this->valideRoleUser("admin");
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
         

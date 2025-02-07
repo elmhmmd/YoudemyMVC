@@ -23,7 +23,7 @@ class Student implements isActive
         $result = $stmt->fetchAll();
         $students = [];
         foreach ($result as $student) {
-            $students[] = new UserClass($student['user_id'], $student['username'], $student['email'], "", $student['role_id'], $student['isActive']);
+            $students[] = new UserClass($student['user_id'], $student['username'], $student['email'], "", $student['role_id'], $student['isactive']);
         }
         return $students;
     }

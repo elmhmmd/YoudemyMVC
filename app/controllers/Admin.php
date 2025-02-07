@@ -11,6 +11,7 @@ class Admin extends Controller
 
     public function dashboard()
     {
+        $this->valideRoleUser("admin");
         $coursesCount = Course::countCourses();
         $courseDistribution = Course::courseDistribution();
         $best3Courses = Course::getBest3Courses();
@@ -24,23 +25,27 @@ class Admin extends Controller
     }
     public function students()
     {
+        $this->valideRoleUser("admin");
         $this->view("admin/students");
     }
     public function teachers()
     {
+        $this->valideRoleUser("admin");
         $this->view("admin/teachers");
     }
     public function tags()
     {
-        echo json_encode(["tags" => ["tag1","tag2"]]);
+        $this->valideRoleUser("admin");
         $this->view("admin/tags");
     }
     public function categories()
     {
+        $this->valideRoleUser("admin");
         $this->view("admin/categories");
     }
     public function allStudents()
     {
+        $this->valideRoleUser("admin");
         try {
             $student = $this->modal("Student");
             $students = $student->getStudents();
@@ -61,6 +66,7 @@ class Admin extends Controller
     }
     public function allTeachers()
     {
+        $this->valideRoleUser("admin");
         try {
             $teacher = $this->modal("Teacher");
             $teachers = $teacher->getTeachers();
@@ -81,6 +87,7 @@ class Admin extends Controller
     }
     public function toggleStatus()
     {
+        $this->valideRoleUser("admin");
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
 

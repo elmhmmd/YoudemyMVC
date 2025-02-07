@@ -63,7 +63,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
                                 <!-- Example row structure -->
                                 <tr>
                                     <th colspan="5">
-                                        <p class="text-gray-900 text-center text-xl font-semibold">Loading...</p>
+                                        <p class="text-gray-900 text-center text-lg font-semibold">Loading...</p>
                                     </th>
                                 </tr>
                             </tbody>
@@ -134,7 +134,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
             <td class="px-6 py-4">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img src="${course.thumbnail ? `/uknow/assets/uploads/${course.thumbnail}` : ''}" 
+                        <img src="${course.thumbnail ? `/UknowMvc/public/imgs/uploads/${course.thumbnail}` : ''}" 
                              class="h-16 aspect-video object-cover rounded-md bg-gray-100" 
                              alt="Course thumbnail" />
                     </div>

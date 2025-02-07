@@ -21,7 +21,7 @@
                      Home
                  </a>
                  <?php if ($role && $_SESSION['user']["role_id"] == 3): ?>
-                     <a href="<?= URLROOT . '/admin/dashboard' ?> class=" text-gray-700 hover:text-indigo-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-600 after:transition-all">
+                     <a href="<?= URLROOT . '/admin/dashboard' ?>" class='text-gray-700 hover:text-indigo-600 transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-600 after:transition-all'>
                          Dashboard
                      </a>
                  <?php endif; ?>

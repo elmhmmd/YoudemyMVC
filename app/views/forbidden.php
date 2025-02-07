@@ -1,6 +1,4 @@
-<?php
-require_once "./components/header.php";
-?>
+
 
 <div class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full mx-auto mt-20 text-center">
@@ -30,7 +28,7 @@ require_once "./components/header.php";
                     class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
                     Go Back
                 </button>
-                <a href="/uknow/pages/"
+                <a href=<?= URLROOT ?>
                     class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                     Return Home
                 </a>
@@ -44,6 +42,3 @@ require_once "./components/header.php";
         </p>
     </div>
 </div>
-<?php
-require_once "./components/footer.php";
-?>
