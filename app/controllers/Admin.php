@@ -91,9 +91,12 @@ class Admin extends Controller
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
 
-            $studentId = $data['id'] ?? null;
             $status = $data['status'] ?? false;
-
+            $csrf_token = $data['csrf_token'] ?? false;
+            $studentId = $data['id'] ?? null;
+            if (!$this->validateCsrfToken($csrf_token)) {
+                return;
+            };
             if ($studentId === null) {
                 echo json_encode(["error" => "Id is required."]);
                 exit();

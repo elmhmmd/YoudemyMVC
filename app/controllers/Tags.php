@@ -22,6 +22,11 @@ class Tags extends Controller
             $data = json_decode(file_get_contents('php://input'), true);
 
             $tags = $data['tags'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
             if ($tags === null || empty($tags)) {
                 echo json_encode(["error" => "All fields are required."]);
                 exit();
@@ -55,6 +60,11 @@ class Tags extends Controller
 
             $tags = $data['tags'] ?? null;
             $tagId = $data['id'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
 
             if ($tags === null || empty($tags) || $tagId === null) {
                 echo json_encode(["error" => "All fields are required."]);
@@ -87,6 +97,11 @@ class Tags extends Controller
             $data = json_decode(file_get_contents('php://input'), true);
 
             $tagId = $data['id'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
 
             if ($tagId === null) {
                 echo json_encode(["error" => "All fields are required."]);

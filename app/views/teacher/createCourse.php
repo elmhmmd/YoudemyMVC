@@ -8,6 +8,7 @@
 
                 <!-- Course Form -->
                 <form id="courseForm" class="space-y-6">
+                    <input type="hidden" id="csrf_token" name="csrf_token" value="<?= generateCsrfToken(); ?>">
                     <?php if ($data['isEdit']): ?>
                         <input type="hidden" id="courseId" value="<?= htmlspecialchars($data['isEdit']) ?>">
                     <?php endif; ?>
@@ -273,6 +274,7 @@
             formData.append('title', document.getElementById('title').value);
             formData.append('description', document.getElementById('description').value);
             formData.append('category', document.getElementById('category').value);
+            formData.append('csrf_token', document.getElementById('csrf_token').value);
 
             const selectedTags = tagsChoices.getValue();
             formData.append('tags', JSON.stringify(selectedTags.map(tag => tag.value)));

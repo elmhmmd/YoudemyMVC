@@ -18,6 +18,7 @@
     <div class="bg-white rounded-lg shadow mb-8">
         <div class="p-6 border-b border-gray-200">
             <h2 class="text-lg font-semibold">All Teachers</h2>
+            <input type="hidden" id="csrf_token" name="csrf_token" value="<?= generateCsrfToken(); ?>">
         </div>
         <div class="overflow-x-auto">
             <table class="w-full">
@@ -83,6 +84,7 @@
         }
     }
 
+    const csrf_token = document.getElementById("csrf_token").value ;
     // Toggle teacher status
     async function toggleTeacherStatus(teacherId, currentStatus) {
         const action = currentStatus ? 'desactivate' : 'activate';
@@ -91,7 +93,8 @@
             try {
                 const res = await axios.post('/UknowMvc/admin/toggleStatus', {
                     id: teacherId,
-                    status: !currentStatus
+                    status: !currentStatus,
+                    csrf_token
                 });
                 if (res.data.message) {
                     showToast(res.data.message);

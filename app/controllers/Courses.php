@@ -139,10 +139,15 @@ class Courses extends Controller
             $description = $_POST["description"];
             $document = $_POST["document"] ?? '';
             $categoryId = $_POST["category"] ?? '';
+            $categoryId = $_POST["category"] ?? '';
+            $csrf_token = $_POST["csrf_token"] ?? '';
             $tags = json_decode($_POST["tags"]);
             $thumbFileName = null;
             // check the inputs
 
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
             if (!$title || !$description || !$categoryId || !$tags) {
                 echo json_encode(["error" => "All fields are required"]);
             }
@@ -205,10 +210,13 @@ class Courses extends Controller
             $description = $_POST["description"];
             $document = $_POST["document"] ?? '';
             $categoryId = $_POST["category"] ?? '';
+            $csrf_token = $_POST["csrf_token"] ?? '';
             $tags = json_decode($_POST["tags"]);
 
             // check the inputs
-
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
             if (!$title || !$description || !$categoryId) {
                 echo json_encode(["error" => "All fields are required"]);
             }

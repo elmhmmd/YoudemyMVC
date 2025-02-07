@@ -56,6 +56,7 @@
             <div class="mt-3">
                 <h2 class="text-lg font-semibold" id="modalTitle">Create Categories</h2>
                 <form id="categoryForm" class="mt-4">
+                    <input type="hidden" id="csrf_token" name="csrf_token" value="<?= generateCsrfToken(); ?>">
                     <input type="hidden" id="categoryId" value="">
                     <div id="categoryInputs" class="space-y-4">
                         <div class="flex items-center space-x-2">
@@ -90,6 +91,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        const csrf_token = document.getElementById("csrf_token").value ;
+        
         // Utility function to create category row
         function createCategoryRow(category) {
             return `
@@ -191,7 +194,8 @@
             if (confirm('Are you sure you want to delete this category?')) {
                 try {
                     const res = await axios.post('/UknowMvc/categories/delete',{
-                        id
+                        id,
+                        csrf_token
                     })
                     if (res.data.message) {
                         showToast(res.data.message);
@@ -233,7 +237,8 @@
                 const path = categoryId ? 'update' : 'create';
                 const res = await axios.post(`/UknowMvc/categories/${path}`, {
                     id: categoryId,
-                    categories
+                    categories,
+                    csrf_token
                 });
                 if (res.data.message) {
                     showToast(res.data.message);

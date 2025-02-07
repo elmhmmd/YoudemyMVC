@@ -22,6 +22,11 @@ class Categories extends Controller
             $data = json_decode(file_get_contents('php://input'), true);
         
             $Categories = $data['categories'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
             if($Categories === null || empty($Categories)){
                 echo json_encode(["error" => "All fields are required."]);
                 exit();
@@ -55,6 +60,11 @@ class Categories extends Controller
         
             $Categories = $data['categories'] ?? null;
             $categoryId = $data['id'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
         
             if($Categories === null || empty($Categories)|| $categoryId === null){
                 echo json_encode(["error" => "All fields are required."]);
@@ -87,6 +97,11 @@ class Categories extends Controller
             $data = json_decode(file_get_contents('php://input'), true);
         
             $categoryId = $data['id'] ?? null;
+            $csrf_token = $data['csrf_token'] ?? null;
+
+            if(!$this->validateCsrfToken($csrf_token)){
+                return ;
+            }
         
             if($categoryId === null){
                 echo json_encode(["error" => "All fields are required."]);

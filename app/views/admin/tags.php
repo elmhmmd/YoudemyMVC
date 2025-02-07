@@ -52,6 +52,7 @@
             <div class="mt-3">
                 <h2 class="text-lg font-semibold" id="modalTitle">Create Tags</h2>
                 <form id="tagForm" class="mt-4">
+                <input type="hidden" id="csrf_token" name="csrf_token" value="<?= generateCsrfToken(); ?>">
                     <input type="hidden" id="tagId" value="">
                     <div id="tagInputs" class="space-y-4">
                         <div class="flex items-center space-x-2">
@@ -192,12 +193,14 @@
             document.getElementById('tagModal').classList.remove('hidden');
         }
 
+        const csrf_token = document.getElementById("csrf_token").value ;
         // Delete tag
         async function deleteTag(id) {
             if (confirm('Are you sure you want to delete this tag?')) {
                 try {
                     const res = await axios.post('/UknowMvc/tags/delete', {
-                        id
+                        id,
+                        csrf_token
                     })
                     console.log(res);
                     if (res.data.message) {
@@ -240,7 +243,8 @@
                 const path = tagId ? 'update' : 'create';
                 const res = await axios.post(`/UknowMvc/tags/${path}`, {
                     id: tagId,
-                    tags
+                    tags,
+                    csrf_token
                 });
                 console.log(res);
                 if (res.data.message) {
