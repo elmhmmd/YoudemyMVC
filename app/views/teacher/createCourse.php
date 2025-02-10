@@ -21,9 +21,9 @@
                                 <img src="<?= $data['isEdit'] ? URLROOT . "/public/imgs/uploads/" . $data['course'][$data['courseId']]->getThumbnail() : '' ?>"
                                     alt="Thumbnail preview" class="max-w-xs rounded-lg shadow-md">
                             </div>
-                            <label class="cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
+                            <label class="cursor-pointer bg-white rounded-md font-medium text-emerald-600 hover:text-emerald-500">
                                 <span class="rounded-md border border-gray-300 bg-white py-2 px-4 hover:bg-gray-50">
-                                    <?= $data['isEdit'] ? 'Change Thumbnail' : 'Upload Thumbnail' ?>
+                                    <?= $data['isEdit'] ? 'Change Picture' : 'Upload Picture' ?>
                                 </span>
                                 <input type="file" id="thumbnail" name="thumbnail" accept="image/*" class="sr-only">
                             </label>
@@ -124,7 +124,7 @@
                             Reset
                         </button>
                         <button type="submit"
-                            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <?= $data['isEdit'] ? 'Update Course' : 'Save Course' ?>
                         </button>
                     </div>
@@ -183,8 +183,8 @@
         async function fetchTagsAndCategories() {
             try {
                 const [tagsResponse, categoriesResponse] = await Promise.all([
-                    axios.get("/UknowMvc/tags"),
-                    axios.get("/UknowMvc/categories")
+                    axios.get("/youdemyvc/tags"),
+                    axios.get("/youdemyvc/categories")
                 ]);
 
 
@@ -292,8 +292,8 @@
             let res = null;
             try {
                 const endpoint = isEdit ?
-                    "/UknowMvc/courses/update" :
-                    "/UknowMvc/courses/create";
+                    "/youdemyvc/courses/update" :
+                    "/youdemyvc/courses/create";
 
                 const res = await axios.post(endpoint, formData, {
                     headers: {
@@ -303,7 +303,7 @@
                 if (res.data.success) {
                     showToast(res.data.success);
                     setTimeout(() => {
-                        window.location.href = '/UknowMvc/teacher/courses';
+                        window.location.href = '/youdemyvc/teacher/courses';
                     }, 2000);
                 }else{
                     showToast(res.data.error, 'error');

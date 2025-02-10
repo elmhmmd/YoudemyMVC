@@ -74,7 +74,7 @@
     // Load teachers from server
     async function loadTeachers() {
         try {
-            const res = await axios.get('/UknowMvc/admin/allTeachers')
+            const res = await axios.get('/youdemyvc/admin/allTeachers')
             const teachers = res.data.teachers;
             const teachersList = document.getElementById('teachersList');
             teachersList.innerHTML = teachers.map(teacher => createTeacherRow(teacher)).join('');
@@ -91,7 +91,7 @@
         const confirmMessage = `Are you sure you want to ${action} this teacher?`;
         if (confirm(confirmMessage)) {
             try {
-                const res = await axios.post('/UknowMvc/admin/toggleStatus', {
+                const res = await axios.post('/youdemyvc/admin/toggleStatus', {
                     id: teacherId,
                     status: !currentStatus,
                     csrf_token

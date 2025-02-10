@@ -50,7 +50,7 @@ class Student implements isActive
         $db = Database::getConnection();
         $stmt = $db->prepare(" SELECT u.*, COUNT(e.course_id) AS enrolled_courses
         FROM users u
-        JOIN enrollement e ON e.user_id = u.id
+        JOIN enrollment e ON e.user_id = u.id
         GROUP BY u.id
         ORDER BY enrolled_courses DESC
         LIMIT 3

@@ -109,7 +109,7 @@
         // Load tags from server
         async function loadTags() {
             try {
-                const res = await axios.get('/UknowMvc/tags')
+                const res = await axios.get('/youdemyvc/tags')
                 const tags = res.data.tags;
                 const tagsList = document.getElementById('tagsList');
                 if (tags.length === 0) {
@@ -198,7 +198,7 @@
         async function deleteTag(id) {
             if (confirm('Are you sure you want to delete this tag?')) {
                 try {
-                    const res = await axios.post('/UknowMvc/tags/delete', {
+                    const res = await axios.post('/youdemyvc/tags/delete', {
                         id,
                         csrf_token
                     })
@@ -241,7 +241,7 @@
 
             try {
                 const path = tagId ? 'update' : 'create';
-                const res = await axios.post(`/UknowMvc/tags/${path}`, {
+                const res = await axios.post(`/youdemyvc/tags/${path}`, {
                     id: tagId,
                     tags,
                     csrf_token

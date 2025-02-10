@@ -69,7 +69,7 @@ require_once APPROOT . "/views/components/navbar.php";
     const userId = document.getElementById("user_id");
     // enrolle_form.addEventListener("submit", async (e) => {
     //     console.log("clicked");
-    //     const res = await axios.post("/UknowMvc/courses/enrolle/", {})
+    //     const res = await axios.post("/youdemyvc/courses/enrolle/", {})
     // })
 </script>
 <?php

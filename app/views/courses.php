@@ -121,7 +121,7 @@ require_once APPROOT . "/views/components/navbar.php";
                 search: currentSearchTerm
             });
 
-            const res = await axios.post('/UknowMvc/courses', {
+            const res = await axios.post('/youdemyvc/courses', {
                 page: clickedPage || 1,
                 limit,
                 search: currentSearchTerm,
@@ -182,7 +182,7 @@ require_once APPROOT . "/views/components/navbar.php";
         <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
             <div class="relative">
                 <img
-                    src='/UknowMvc/public/imgs/uploads/${course.thumbnail}'
+                    src='/youdemyvc/public/imgs/uploads/${course.thumbnail}'
                     alt="${course.title}"
                     onerror="this.src='../assets/images/default-course.jpg'"
                     class="w-full h-80 aspect-video object-cover"

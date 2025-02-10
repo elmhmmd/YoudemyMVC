@@ -37,7 +37,7 @@ class Enrollment
                 exit();
             }
 
-            $sql = "INSERT INTO enrollement (user_id, course_id) VALUES (:student_id, :course_id)";
+            $sql = "INSERT INTO enrollment (user_id, course_id) VALUES (:student_id, :course_id)";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(":student_id", $enrollment->getStudentId());
             $stmt->bindValue(":course_id", $enrollment->getCourseId());
@@ -70,7 +70,7 @@ class Enrollment
                     u.username AS user_name,
                     u.email AS user_email
                 FROM course c
-                JOIN enrollement e ON e.course_id = c.id
+                JOIN enrollment e ON e.course_id = c.id
                 JOIN category cat ON c.category_id = cat.id 
                 JOIN users u ON c.user_id = u.id
                 LEFT JOIN course_tag ct ON c.id = ct.course_id 

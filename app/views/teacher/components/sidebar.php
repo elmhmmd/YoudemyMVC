@@ -7,9 +7,8 @@
 <div id="sidebar" class="fixed h-screen inset-y-0 left-0 w-64 bg-gray-900 text-white p-4 sidebar-transition transform -translate-x-full md:translate-x-0 z-40">
     <div class="flex items-center mb-8">
         <a href=<?= URLROOT ?> class="flex items-center space-x-2">
-            <i class="fas fa-graduation-cap h-8 w-8 text-indigo-600"></i>
-            <span class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                <span class="text-white">U</span>Know
+            <span class="text-4xl font-bold bg-gradient-to-r bg-clip-text text-green-600">
+                <span class="text-white">You</span>demy
             </span>
         </a>
     </div>
@@ -18,17 +17,17 @@
         <?php
         $currentPage = $_SERVER['REQUEST_URI'];
         ?>
-        <a href="/UknowMvc/teacher/dashboard"
+        <a href="/youdemyvc/teacher/dashboard"
             class="flex items-center space-x-2 p-3 rounded-lg <?php echo strpos($currentPage, '/uknow/pages/teacher/dashboard.php') !== false ? 'bg-gray-800' : 'hover:bg-gray-800'; ?>">
             <i class="fas fa-gauge-high"></i>
             <span>Dashboard</span>
         </a>
-        <a href="/UknowMvc/teacher/courses"
+        <a href="/youdemyvc/teacher/courses"
             class="flex items-center space-x-2 p-3 rounded-lg <?php echo strpos($currentPage, '/uknow/pages/teacher/courses.php') !== false ? 'bg-gray-800' : 'hover:bg-gray-800'; ?>">
             <i class="fas fa-book"></i>
             <span>Courses</span>
         </a>
-        <a href="/UknowMvc/teacher/students"
+        <a href="/youdemyvc/teacher/students"
             class="flex items-center space-x-2 p-3 rounded-lg <?php echo strpos($currentPage, '/uknow/pages/teacher/students.php') !== false ? 'bg-gray-800' : 'hover:bg-gray-800'; ?>">
             <i class="fas fa-users"></i>
             <span>Students</span>

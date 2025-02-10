@@ -484,7 +484,7 @@ class Course
         if ($userId) {
             $enrollmentQuery = "
                 SELECT COUNT(*) AS userEnrolled 
-                FROM enrollement 
+                FROM enrollment 
                 WHERE user_id = :user_id AND course_id = :course_id
             ";
             $stmt = $db->prepare($enrollmentQuery);
@@ -571,7 +571,7 @@ class Course
         $db = Database::getConnection();
         $stmt = $db->prepare("SELECT c.*, COUNT(e.user_id) AS enrolled_users
         FROM course c
-        JOIN enrollement e ON e.course_id = c.id
+        JOIN enrollment e ON e.course_id = c.id
         GROUP BY c.id
         ORDER BY enrolled_users DESC
         LIMIT 3

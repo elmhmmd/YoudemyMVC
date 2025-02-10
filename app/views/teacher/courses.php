@@ -13,7 +13,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
         </div>
         <div class="flex items-center space-x-4">
             <!-- Add Course Button -->
-            <a href="/UknowMvc/courses/create" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+            <a href="/youdemyvc/courses/create" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
                 Add New Course
             </a>
 
@@ -117,7 +117,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
         // Fetch courses data
         async function fetchCourses() {
             try {
-                const res = await axios.get('/UknowMvc/courses/teacher');
+                const res = await axios.get('/youdemyvc/courses/teacher');
                 const data = res.data.courses;
                 courses = data;
                 renderCourses();
@@ -134,7 +134,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
             <td class="px-6 py-4">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img src="${course.thumbnail ? `/UknowMvc/public/imgs/uploads/${course.thumbnail}` : ''}" 
+                        <img src="${course.thumbnail ? `/youdemyvc/public/imgs/uploads/${course.thumbnail}` : ''}" 
                              class="h-16 aspect-video object-cover rounded-md bg-gray-100" 
                              alt="Course thumbnail" />
                     </div>
@@ -175,7 +175,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
         }
         // Update course handler
         window.updateCourse = function(courseId) {
-            window.location.href = `/UknowMvc/courses/update/${courseId}`;
+            window.location.href = `/youdemyvc/courses/update/${courseId}`;
         };
 
         // Delete course handlers
@@ -188,7 +188,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
             if (courseToDelete) {
                 try {
                     // Replace with your actual delete API endpoint
-                    const res = await axios.post(`/UknowMvc/courses/delete`, {
+                    const res = await axios.post(`/youdemyvc/courses/delete`, {
                         courseId: courseToDelete
                     });
                     if (res.data.success) {

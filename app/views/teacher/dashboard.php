@@ -71,7 +71,7 @@ require_once  APPROOT . "/views/teacher/components/sidebar.php";
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img src="/UknowMvc/public/imgs/uploads/<?= $course->getThumbnail() ? $course->getThumbnail() : '' ?> "
+                                        <img src="/youdemyvc/public/imgs/uploads/<?= $course->getThumbnail() ? $course->getThumbnail() : '' ?> "
                                             class="h-16 aspect-video object-cover rounded-md bg-gray-100"
                                             alt="Course thumbnail" />
                                     </div>

@@ -66,7 +66,7 @@ class Teacher implements isActive
     {
         $db = Database::getConnection();
         $sql = "SELECT COUNT(DISTINCT e.user_id) AS student_count
-        FROM enrollement e
+        FROM enrollment e
         JOIN course c ON e.course_id = c.id
         WHERE c.user_id = :teacher_id";
         $stmt = $db->prepare($sql);
@@ -89,7 +89,7 @@ class Teacher implements isActive
         $db = Database::getConnection();
         $stmt = $db->prepare("SELECT u.*,u.id AS 
         user_id FROM users u
-        JOIN enrollement e ON e.user_id = u.id 
+        JOIN enrollment e ON e.user_id = u.id 
         JOIN course c ON e.course_id = c.id 
         WHERE c.user_id = :teacherId 
         ");

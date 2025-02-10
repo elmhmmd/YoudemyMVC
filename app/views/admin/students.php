@@ -77,7 +77,7 @@
     // Load students from server
     async function loadStudents() {
         try {
-            const res = await axios.get('/UknowMvc/admin/allStudents')
+            const res = await axios.get('/youdemyvc/admin/allStudents')
             const students = res.data.students;
             const studentsList = document.getElementById('studentsList');
             studentsList.innerHTML = students.map(student => createStudentRow(student)).join('');
@@ -94,7 +94,7 @@
         const confirmMessage = `Are you sure you want to ${action} this student?`;
         if (confirm(confirmMessage)) {
             try {
-                const res = await axios.post('/UknowMvc/admin/toggleStatus', {
+                const res = await axios.post('/youdemyvc/admin/toggleStatus', {
                     id: studentId,
                     status: !currentStatus,
                     csrf_token

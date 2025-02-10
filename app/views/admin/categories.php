@@ -115,7 +115,7 @@
         // Load categories from server
         async function loadCategories() {
             try {
-                const res = await axios.get('/UknowMvc/categories')
+                const res = await axios.get('/youdemyvc/categories')
                 const categories = res.data.categories;
                 const categoriesList = document.getElementById('categoriesList');
                 categoriesList.innerHTML = categories.map(category => createCategoryRow(category)).join('');
@@ -193,7 +193,7 @@
         async function deleteCategory(id) {
             if (confirm('Are you sure you want to delete this category?')) {
                 try {
-                    const res = await axios.post('/UknowMvc/categories/delete',{
+                    const res = await axios.post('/youdemyvc/categories/delete',{
                         id,
                         csrf_token
                     })
@@ -235,7 +235,7 @@
 
             try {
                 const path = categoryId ? 'update' : 'create';
-                const res = await axios.post(`/UknowMvc/categories/${path}`, {
+                const res = await axios.post(`/youdemyvc/categories/${path}`, {
                     id: categoryId,
                     categories,
                     csrf_token
